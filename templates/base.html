@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body class="bg-gray-50">
+<div>
+{% include 'components/nav.html' %}
+   <div class="flex overflow-hidden bg-white pt-16">
+      <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
+      <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
+      {% include 'components/aside.html' %}
+        {% block content %}
+        {% endblock content %}
+      {% include 'components/footer.html' %}
+      {% include 'components/cop.html' %}
+      </div>
+   </div>
+   <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+   <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+</div>
+</body>
+</html>
+       

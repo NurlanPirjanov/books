@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Adabiyotlar jadvali{% endblock title %}
+
+{% block content %}
+    <div class="py-3 m-3">
+        <div>
+            <form action="{% url 'list' %}" action="get">
+                <div class="border mt-1">
+                    <div class="p-2 bg-gray-100">Filtrlar</div>
+                    <div class="grid grid-cols-6 gap-1 p-2 bg-white">
+                        <div>
+                            <label for="countries" class="block mb-2 text-xs font-medium text-gray-900 ">Semestr</label>
+                            <select name="Semestr" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="id_kurs">
+                                <option selected value="">---</option>
+                                <option value="I">I</option>
+                                <option value="II">II</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="countries" class="block mb-2 text-xs font-medium text-gray-900 ">Kurs</label>
+                            <select name="kurs" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="id_kurs">
+                                <option value="" selected="">---</option>
+                                <option value="1">1</option>
+
+                                <option value="2">2</option>
+
+                                <option value="3">3</option>
+
+                                <option value="4">4</option>
+
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="yunalish" class="block mb-2 text-xs font-medium text-gray-900">Talim yo`nalishi</label>
+                            <select id="yunalish" name="yonalish" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="" selected="">---</option>
+                                {% for qanige in qanigelik %}
+                                    <option value="{{ qanige.id }}">{{ qanige.yonalish }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label for="kaf" class="block mb-2 text-xs font-medium text-gray-900">Kafedra nomi</label>
+                            <select id="kaf" name="kaf" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="" selected="">---</option>
+                                {% for kaf in kaf_list %}
+                                    <option value="{{ kaf.id }}">{{ kaf.kaf_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 ">
+                                <svg aria-hidden="true" class="w-10  h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                <span class="sr-only">Icon description</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="pt-3">
+                <div class="overflow-x-auto relative border sm:rounded-lg">
+                    <table class=" w-full text-sm text-left text-gray-500 ">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="py-2 px-2">
+                                Adabiyot nomi
+                            </th>
+                            <th scope="col" class="py-2 px-2">
+                                Avtor
+                            </th>
+                            <th scope="col" class="py-2 px-2">
+                                Kurs
+                            </th>
+                            <th scope="col" class="py-2 px-2">
+                                Semestr
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for book in book_list %}
+                            <tr class="bg-white border-b">
+                                {% for i in book  %}
+                                    <td class="py-4 px-6">
+                                        {{ i }}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Malumotlarni export qilish{% endblock title %}
+
+{% block content %}
+    <div class="rounded-t-lg border-b bg-gray-100 h-[3rem] font-bold p-3">Adabiyotlar exporti</div>
+    <div class="py-3 m-3">
+        <div class="">
+            <form action="{% url 'book_export_xls' %}" action="get">
+                <div class="border">
+                    <div class="p-2 bg-gray-100">Ustunlar</div>
+                    <div class="bg-white grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap p-2">
+                        {% for key, value in rowss.items %}
+                            <div>
+                                <label for="{{ key }}"  class="inline-flex relative items-center mb-4 cursor-pointer">
+                                    <input type="checkbox" name="{{ key }}" value="1" id="{{ key }}" class="sr-only peer" checked>
+                                    <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{ value }}</span>
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="border mt-1">
+                    <div class="p-2 bg-gray-100">Filtrlar</div>
+                    <div class="bg-white grid grid-cols-6 gap-1 p-2">
+                        <div>
+                            <label for="countries" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-400">Semestr</label>
+                            <select name="f_sem" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="id_kurs">
+                                <option selected value="">---</option>
+                                <option value="I">I</option>
+                                <option value="II">II</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="countries" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-400">Kurs</label>
+                            <select name="f_kurs" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="id_kurs">
+                                <option value="" selected="">---</option>
+                                <option value="1">1</option>
+
+                                <option value="2">2</option>
+
+                                <option value="3">3</option>
+
+                                <option value="4">4</option>
+
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="yunalish" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-400">Talim yo`nalishi</label>
+                            <select id="yunalish" name="f_yunalish" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <option value="" selected="">---</option>
+                                {% for qanige in qanigelik %}
+                                    <option value="{{ qanige.yonalish }}">{{ qanige.yonalish }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label for="til" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-400">Adabiyot tili</label>
+                            <select id="til" name="f_lang" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <option value="" selected="">---</option>
+                                {% for lan in lang %}
+                                    <option value="{{ lan.id }}">{{ lan.lang }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label for="kaf" class="block mb-2 text-xs font-medium text-gray-900 dark:text-gray-400">Kafedra nomi</label>
+                            <select id="kaf" name="f_kaf" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <option value="" selected="">---</option>
+                                {% for kaf in kaf_list %}
+                                    <option value="{{ kaf.id }}">{{ kaf.kaf_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit" class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2">
+                                <svg aria-hidden="true" class="w-10 h-4" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                                <span class="sr-only"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

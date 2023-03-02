@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Adabiyotlar jadvali{% endblock title %}
+
+{% block content %}
+    {% if book_list %}
+        <div class="py-3 m-3">
+            <div class="overflow-x-auto relative">
+                <table class="w-full text-sm text-left text-gray-500 ">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+                        <tr>
+                            <th scope="col" class="py-2 px-2">
+                                Adabiyot nomi
+                            </th>
+                            <th scope="col" class="py-2 px-2">
+                                Avtor
+                            </th>
+                            <th scope="col" class="py-2 px-2">
+                                Kurs
+                            </th>
+                            <th scope="col" class="py-2 px-2">
+                                Semestr
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for book in book_list %}
+                            <tr class="bg-white border-b">
+                                {% for i in book  %}
+                                    <td class="py-4 px-6">
+                                        {{ i }}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    {% else %}
+    <div class="bg-red-500 text-lg rounded-lg bold p-4  py-3 m-3">
+        <p>Topilmadi2</p>
+    </div>
+    {% endif %}
+{% endblock %}
